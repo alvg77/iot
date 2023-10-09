@@ -6,12 +6,17 @@ app = Flask(__name__)
 
 @app.route("/battery", methods=["GET"])
 def getBattery():
-    batterySecs = psutil.sensors_battery().secsleft
+    batteryInfo = psutil.sensors_battery()
 
-    minutes, seconds = divmod(batterySecs, 60) 
-    hours, minutes = divmod(minutes, 60)
+    if batteryInfo:
+        batterySecs = batteryInfo.secsleft
+        
+        minutes, seconds = divmod(batterySecs, 60) 
+        hours, minutes = divmod(minutes, 60)
 
-    return jsonify({'remainig': f"{hours}:{minutes}:{seconds}"})
+        return jsonify({'remainig': f"{hours}:{minutes}:{seconds}"})
+    else:
+        return jsonify({'error': 'could not get battery info'}), 404
 
 @app.route("/process", methods=["GET"])
 def getProcess():
