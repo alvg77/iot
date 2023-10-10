@@ -28,6 +28,7 @@ def getProcess():
                 'ID': process.pid,
                 'name': process.name(),
                 'status': process.status(),
+                # time is in GMT
                 'started': datetime.fromtimestamp(process.create_time()),
             }
         )
