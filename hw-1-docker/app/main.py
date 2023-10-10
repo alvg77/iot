@@ -14,7 +14,7 @@ def getBattery():
         minutes, seconds = divmod(batterySecs, 60) 
         hours, minutes = divmod(minutes, 60)
 
-        return jsonify({'remainig': f"{hours}:{minutes}:{seconds}"})
+        return jsonify({'data': f"{hours}:{minutes}:{seconds}"})
     else:
         return jsonify({'error': 'could not get battery info'}), 404
 
@@ -22,21 +22,28 @@ def getBattery():
 def getProcess():
     process = psutil.Process()
     
-    return jsonify(
-        {
-            'ID': process.pid,
-            'name': process.name(),
-            'status': process.status(),
-            'started': datetime.datetime.fromtimestamp(process.create_time()),
-        }
-    )
+    if process:
+        return jsonify(
+            {
+                'ID': process.pid,
+                'name': process.name(),
+                'status': process.status(),
+                'started': datetime.datetime.fromtimestamp(process.create_time()),
+            }
+        )
+    else:
+        return jsonify({'error': 'could not get process info'}), 404
 
 @app.route("/cpu", methods=["GET"])
 def getCPU():
     cores = psutil.cpu_percent(percpu=True)
-    return jsonify(
-        { f'core {i}': core for i, core in enumerate(cores) }
-    )
+    
+    if cores:
+        return jsonify(
+            { 'data': [ core for core in cores ] }
+        )
+    else:
+        return jsonify({'error': 'could not get cpu info'}), 404
 
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=True, port=9090)
