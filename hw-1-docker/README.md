@@ -20,11 +20,7 @@
     - връща се json в следния формат - `{ 'data': '<hh>:<mm>:<ss>' }`, където `hh` са часове, `mm` са минути, `ss` са секунди
 - `/process` - дава данни за текущия процес
     - връща се json в следния формат:
-      `{
-            'ID': <pid>,
-            'name': <name>,
-            'status': <status>,
-            'started': <time_of_start> }`
+      `{ 'ID': <pid>, 'name': <name>, 'status': <status>, 'started': <time_of_start> }`
 - `/cpu` - дава данни за заетостта на всяко едно процесорно ядро
     - врща се json със следния формат:
       `{ 'data': [<cpu1_percentage>, <cpu2_percentage>, ..., <cpuN_percentage>] }`
