@@ -37,7 +37,7 @@ def getProcess():
 @app.route("/cpu", methods=["GET"])
 def getCPU():
     cores = psutil.cpu_percent(percpu=True)
-    
+
     if cores:
         return jsonify(
             { 'data': [ core for core in cores ] }
@@ -46,4 +46,4 @@ def getCPU():
         return jsonify({'error': 'could not get cpu info'}), 404
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', debug=True, port=9090)
+    app.run('0.0.0.0', port=9090)
