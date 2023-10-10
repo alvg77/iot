@@ -27,5 +27,5 @@
             'started': <time_of_start> }`
 - `/cpu` - дава данни за заетостта на всяко едно процесорно ядро
     - врща се json със следния формат:
-      `{ 'cpu_usage': [<cpu1_percentage>, <cpu2_percentage>, ..., <cpuN_percentage>] }`
+      `{ 'data': [<cpu1_percentage>, <cpu2_percentage>, ..., <cpuN_percentage>] }`
       
