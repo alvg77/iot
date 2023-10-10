@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-import datetime
+from datetime import datetime
 import psutil
 
 app = Flask(__name__)
@@ -28,7 +28,7 @@ def getProcess():
                 'ID': process.pid,
                 'name': process.name(),
                 'status': process.status(),
-                'started': datetime.datetime.fromtimestamp(process.create_time()),
+                'started': datetime.fromtimestamp(process.create_time()),
             }
         )
     else:
