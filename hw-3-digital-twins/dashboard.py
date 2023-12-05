@@ -3,6 +3,10 @@ import os
 import time
 
 if __name__ == "__main__":
+    if os.listdir("./digital-twins") == []:
+        print("No bulbs found")
+        exit(-1)
+
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         # in case new bulbs are added
